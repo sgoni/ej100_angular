@@ -1,0 +1,32 @@
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ” crossorigin=”anonymous"
+/>
+
+<h1>{{ title }}</h1>
+
+<br />
+<div class="container bg">
+  <br />
+
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="nombre"
+    (keyup)="cambiaNombre()"
+  />
+  <br />
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="nombre2"
+    (keyup)="cambiaNombre2()"
+  />
+  <br />
+</div>
+
+<br />
+<div *ngIf="nombre" class="container bg2">
+  <h3>Hola {{ nombre }} / {{ nombre2 }}</h3>
+</div>

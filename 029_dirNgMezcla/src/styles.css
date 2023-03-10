@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+.divBg {
+  border: 10px solid green;
+  width: 70%;
+  background-color: #f3f781;
+}
+
+.tamB {
+  height: 40px;
+  width: 50%
+  ;
+}
+.activo {
+  color: blue;
+}
+
+.inactivo {
+  color: red;
+}
