@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title: string = 'app works!';
-  ponFondo: boolean = true;
-  mostrar: boolean = true;
-  habilitar = false;
-  referencia: string = 'http://www.google.com';
+  title = '034 pipePurosImpuros';
+
+  fechas: Date[] = [];
+
+  anadirFecha() {
+    this.fechas.push(new Date());
+  }
 }

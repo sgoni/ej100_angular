@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title: string = 'app works!';
-  ponFondo: boolean = true;
-  mostrar: boolean = true;
-  habilitar = false;
-  referencia: string = 'http://www.google.com';
+  title = '033 pipePers';
+  dividiendo: number = 10;
+  divisor: string = '2';
 }

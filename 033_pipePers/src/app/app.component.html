@@ -1,0 +1,6 @@
+<h1>{{ title }}</h1>
+
+<p><b>Pipes personalizados: divisionEnteraPipe</b></p>
+<div>Dividiendo: <input type="text" [(ngModel)]="dividiendo" /></div>
+<div>Divisor: <input type="text" [(ngModel)]="divisor" /></div>
+<p>Resultado: {{ dividiendo | divisionEntera : divisor }}</p>
