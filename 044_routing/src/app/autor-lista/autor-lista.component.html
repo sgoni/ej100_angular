@@ -1,0 +1,5 @@
+<p>autor-lista works!</p>
+
+<li *ngFor="let libro of libros">
+  <a [routerLink]="'/libros', libro.id">{{ libro.titulo }}</a>
+</li>
