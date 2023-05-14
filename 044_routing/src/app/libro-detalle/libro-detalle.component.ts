@@ -9,7 +9,7 @@ import { LIBROS } from '../mocks';
   styleUrls: ['./libro-detalle.component.css'],
 })
 export class LibroDetalleComponent implements OnInit {
-  libro: Libro;
+  libro: Libro | undefined;
 
   constructor(private route: ActivatedRoute) {
     this.libro = new Libro();
@@ -17,7 +17,7 @@ export class LibroDetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = +params.get(`id`);
+      let id = params.get('id');
       this.libro = LIBROS.find((item) => item.id === id);
     });
   }
