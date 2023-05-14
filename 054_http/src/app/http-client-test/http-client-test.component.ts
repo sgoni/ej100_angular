@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {
   HttpClient,
   HttpErrorResponse,
+  HttpEventType,
   HttpHeaders,
   HttpParams,
+  HttpRequest,
 } from '@angular/common/http';
 import { Post } from '../post';
+import { delay, forkJoin, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-http-client-test',
@@ -104,5 +107,58 @@ export class HttpClientTestComponent implements OnInit {
       .subscribe((data) => {
         this.resultadoPeticion = data;
       });
+  }
+
+  peti_paral() {
+    const request1 = this.http
+      .get('https://jsonplaceholder.typicode.com/posts/4')
+      .pipe(delay(3000));
+    const request2 = this.http.get(
+      'https://jsonplaceholder.typicode.com/todos/5'
+    );
+
+    forkJoin([request1, request2]).subscribe((data) => {
+      this.resultadoPeticion = data;
+    });
+  }
+
+  peti_sec() {
+    this.http
+      .get<Post>('https://jsonplaceholder.typicode.com/posts/1')
+      .pipe(
+        switchMap((data) => {
+          data.title = '(MODIFICADO) ' + data.title;
+
+          return this.http.put<Post>(
+            'https://jsonplaceholder.typicode.com/posts/1',
+            data
+          );
+        })
+      )
+      .subscribe((data) => {
+        this.resultadoPeticion = data;
+      });
+  }
+
+  post_prgEvents() {
+    const request = new HttpRequest(
+      'POST',
+      'https://jsonplaceholder.typicode.com/posts/',
+      {
+        title: 'Critica de la pelicula',
+        body: 'Me ha gustado mucho',
+        userId: 1,
+      },
+      { reportProgress: true }
+    );
+
+    this.http.request(request).subscribe((event) => {
+      if (event.type === HttpEventType.UploadProgress) {
+        const percentDone = Math.round(100 * (event.loaded / event.total));
+        console.log(`Fichero transferido en un ${percentDone}%`);
+      } else if (event.type === HttpEventType.Response) {
+        this.resultadoPeticion = event.body;
+      }
+    });
   }
 }
