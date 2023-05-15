@@ -45,7 +45,7 @@
         #nombre="ngModel"
         #_nombre
         required
-        minlength="4"
+        filtrar-caracteres
       />
     </div>
     <div
@@ -57,8 +57,14 @@
         Name is required.
       </div>
 
+      <!--
       <div *ngIf="nombre.errors?.['minlength']" class="alert alert-danger">
         Name must be at least 4 characters long.
+      </div>
+      -->
+
+      <div *ngIf="nombre.errors?.['filtrarCaracteres']" class="alert alert-danger">
+        Solo puede introducir letras de la A la Z en mayusculas.
       </div>
     </div>
 
